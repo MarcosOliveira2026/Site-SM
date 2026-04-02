@@ -1,0 +1,1751 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SM Mudanças e Transportes | Curitiba e Todo o Brasil</title>
+  <meta name="description" content="SM Mudanças e Transportes – 20 anos de experiência em mudanças residenciais, comerciais e transporte de cargas em Curitiba e por todo o Brasil. Orçamento personalizado, equipe e estrutura completas." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <style>
+    /* =====================
+       CSS VARIABLES
+    ===================== */
+    :root {
+      --red:        #d12624;
+      --red-dark:   #a81e1c;
+      --blue:       #004aad;
+      --blue-dark:  #003585;
+      --dark:       #0d0d0d;
+      --dark-2:     #111827;
+      --gray-bg:    #f5f7fb;
+      --gray-mid:   #e2e8f0;
+      --text:       #1a1a2e;
+      --text-light: #64748b;
+      --white:      #ffffff;
+      --radius:     12px;
+      --shadow:     0 4px 24px rgba(0,0,0,0.10);
+      --shadow-lg:  0 8px 40px rgba(0,0,0,0.16);
+    }
+
+    /* =====================
+       RESET & BASE
+    ===================== */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body { font-family: 'Inter', sans-serif; color: var(--text); overflow-x: hidden; line-height: 1.6; }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+    button { cursor: pointer; font-family: inherit; }
+    section { width: 100%; }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* =====================
+       BUTTONS
+    ===================== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 15px;
+      transition: all 0.25s ease;
+      border: 2px solid transparent;
+      white-space: nowrap;
+    }
+    .btn-primary {
+      background: var(--red);
+      color: var(--white);
+      border-color: var(--red);
+    }
+    .btn-primary:hover {
+      background: var(--red-dark);
+      border-color: var(--red-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(209,38,36,0.35);
+    }
+    .btn-secondary {
+      background: transparent;
+      color: var(--white);
+      border-color: var(--white);
+    }
+    .btn-secondary:hover {
+      background: var(--white);
+      color: var(--blue);
+      transform: translateY(-2px);
+    }
+    .btn-blue {
+      background: var(--blue);
+      color: var(--white);
+      border-color: var(--blue);
+    }
+    .btn-blue:hover {
+      background: var(--blue-dark);
+      border-color: var(--blue-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,74,173,0.35);
+    }
+
+    /* =====================
+       SECTION HEADER
+    ===================== */
+    .section-label {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 10px;
+    }
+    .section-title {
+      font-size: clamp(26px, 4vw, 38px);
+      font-weight: 800;
+      color: var(--text);
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+    .section-title span { color: var(--blue); }
+    .section-subtitle {
+      font-size: 16px;
+      color: var(--text-light);
+      max-width: 560px;
+    }
+    .section-header { margin-bottom: 56px; }
+    .section-header.center { text-align: center; }
+    .section-header.center .section-subtitle { margin: 0 auto; }
+
+    .divider {
+      width: 56px;
+      height: 4px;
+      background: var(--red);
+      border-radius: 2px;
+      margin-bottom: 20px;
+    }
+    .section-header.center .divider { margin: 0 auto 20px; }
+
+    /* =====================
+       LOGO COMPONENT
+    ===================== */
+    .logo {
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+    }
+    .logo-top {
+      font-size: 22px;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+    }
+    .logo-top .sm { color: var(--red); }
+    .logo-top .rest { color: var(--white); margin-left: 6px; }
+    .logo-bottom {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      color: var(--white);
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+
+    /* =====================
+       HEADER / NAV
+    ===================== */
+    #header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: var(--dark);
+      padding: 0 24px;
+      transition: box-shadow 0.3s ease, padding 0.3s ease;
+    }
+    #header.scrolled {
+      box-shadow: 0 2px 20px rgba(0,0,0,0.4);
+    }
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.80);
+      transition: color 0.2s;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--red);
+      transition: width 0.2s;
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-links a:hover::after { width: 100%; }
+    .header-cta {
+      padding: 10px 20px;
+      font-size: 13px;
+    }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--white);
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+
+    /* Mobile nav */
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      top: 72px;
+      left: 0;
+      right: 0;
+      background: var(--dark-2);
+      padding: 20px 24px;
+      z-index: 999;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      flex-direction: column;
+      gap: 16px;
+    }
+    .mobile-nav.open { display: flex; }
+    .mobile-nav a {
+      font-size: 15px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.85);
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+    .mobile-nav .btn { width: 100%; justify-content: center; margin-top: 8px; }
+
+    /* =====================
+       HERO
+    ===================== */
+    #hero {
+      background: linear-gradient(135deg, var(--dark) 0%, var(--dark-2) 50%, #0a1628 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: 72px;
+      position: relative;
+      overflow: hidden;
+    }
+    #hero::before {
+      content: '';
+      position: absolute;
+      top: -200px;
+      right: -200px;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(0,74,173,0.18) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    #hero::after {
+      content: '';
+      position: absolute;
+      bottom: -150px;
+      left: -150px;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(209,38,36,0.12) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .hero-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 80px 24px;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(0,74,173,0.20);
+      border: 1px solid rgba(0,74,173,0.40);
+      color: #7eb3ff;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: 100px;
+      margin-bottom: 28px;
+    }
+    .hero-badge i { font-size: 11px; }
+    .hero-title {
+      font-size: clamp(36px, 6vw, 68px);
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1.08;
+      margin-bottom: 24px;
+      letter-spacing: -1px;
+    }
+    .hero-title .highlight {
+      color: var(--red);
+      position: relative;
+    }
+    .hero-slogan {
+      font-size: clamp(16px, 2.5vw, 22px);
+      font-weight: 400;
+      color: rgba(255,255,255,0.70);
+      margin-bottom: 40px;
+      max-width: 560px;
+      font-style: italic;
+    }
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 64px;
+    }
+    .hero-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+    }
+    .stat-item { text-align: left; }
+    .stat-number {
+      font-size: 40px;
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1;
+    }
+    .stat-number span { color: var(--red); }
+    .stat-label {
+      font-size: 13px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.55);
+      margin-top: 4px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .hero-decoration {
+      position: absolute;
+      right: 24px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 440px;
+      opacity: 0.06;
+      pointer-events: none;
+    }
+    .hero-decoration i {
+      font-size: 320px;
+      color: var(--white);
+    }
+
+    /* =====================
+       SOBRE
+    ===================== */
+    #sobre {
+      background: var(--white);
+      padding: 100px 0;
+    }
+    .sobre-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .sobre-visual {
+      position: relative;
+    }
+    .sobre-img-main {
+      width: 100%;
+      border-radius: var(--radius);
+      background: var(--gray-bg);
+      aspect-ratio: 4/3;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+    }
+    .sobre-img-main img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      border-radius: var(--radius);
+    }
+    .sobre-card-float {
+      position: absolute;
+      bottom: -28px;
+      right: -28px;
+      background: var(--blue);
+      color: var(--white);
+      padding: 24px 28px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-lg);
+      text-align: center;
+      min-width: 140px;
+    }
+    .sobre-card-float .num {
+      font-size: 48px;
+      font-weight: 900;
+      line-height: 1;
+    }
+    .sobre-card-float .num span { color: var(--red); }
+    .sobre-card-float .txt {
+      font-size: 13px;
+      font-weight: 600;
+      margin-top: 4px;
+      opacity: 0.85;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .sobre-content { }
+    .sobre-text {
+      font-size: 16px;
+      color: var(--text-light);
+      margin-bottom: 24px;
+      line-height: 1.8;
+    }
+    .sobre-features {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 36px;
+    }
+    .feature-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+    .feature-icon {
+      width: 40px;
+      height: 40px;
+      background: rgba(209,38,36,0.08);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--red);
+      font-size: 16px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .feature-text strong {
+      display: block;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 2px;
+    }
+    .feature-text p {
+      font-size: 14px;
+      color: var(--text-light);
+    }
+
+    /* =====================
+       SERVIÇOS
+    ===================== */
+    #servicos {
+      background: var(--gray-bg);
+      padding: 100px 0;
+    }
+    .servicos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 24px;
+    }
+    .servico-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .servico-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+    }
+    .servico-img {
+      width: 100%;
+      aspect-ratio: 16/10;
+      background: linear-gradient(135deg, var(--gray-mid), #cbd5e1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      color: var(--text-light);
+      font-weight: 500;
+      flex-direction: column;
+      gap: 8px;
+      border-bottom: 3px solid var(--blue);
+      position: relative;
+      overflow: hidden;
+    }
+    .servico-img i { font-size: 36px; color: rgba(0,74,173,0.25); }
+    .servico-img img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
+    .servico-img .img-label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: rgba(0,74,173,0.50);
+      background: rgba(255,255,255,0.7);
+      padding: 4px 10px;
+      border-radius: 4px;
+    }
+    .servico-body { padding: 20px 22px 24px; }
+    .servico-icon {
+      width: 44px;
+      height: 44px;
+      background: rgba(0,74,173,0.08);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--blue);
+      font-size: 18px;
+      margin-bottom: 12px;
+    }
+    .servico-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+    .servico-desc {
+      font-size: 13px;
+      color: var(--text-light);
+      line-height: 1.6;
+    }
+
+    /* =====================
+       ÁREA DE ATUAÇÃO
+    ===================== */
+    #atuacao {
+      background: var(--blue);
+      padding: 100px 0;
+      position: relative;
+      overflow: hidden;
+    }
+    #atuacao::before {
+      content: '';
+      position: absolute;
+      top: -120px;
+      right: -120px;
+      width: 400px;
+      height: 400px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 50%;
+    }
+    #atuacao::after {
+      content: '';
+      position: absolute;
+      bottom: -80px;
+      left: -80px;
+      width: 300px;
+      height: 300px;
+      background: rgba(0,0,0,0.08);
+      border-radius: 50%;
+    }
+    .atuacao-inner {
+      position: relative;
+      z-index: 1;
+    }
+    #atuacao .section-label { color: rgba(255,255,255,0.70); }
+    #atuacao .section-title { color: var(--white); }
+    #atuacao .section-title span { color: var(--red); }
+    #atuacao .section-subtitle { color: rgba(255,255,255,0.70); }
+    #atuacao .divider { background: var(--red); }
+    .atuacao-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      margin-top: 0;
+    }
+    .atuacao-card {
+      background: rgba(255,255,255,0.09);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: var(--radius);
+      padding: 40px 36px;
+      display: flex;
+      align-items: flex-start;
+      gap: 24px;
+      transition: background 0.25s;
+    }
+    .atuacao-card:hover { background: rgba(255,255,255,0.14); }
+    .atuacao-card-icon {
+      width: 64px;
+      height: 64px;
+      background: var(--red);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      font-size: 26px;
+      flex-shrink: 0;
+    }
+    .atuacao-card-content h3 {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+    .atuacao-card-content p {
+      font-size: 14px;
+      color: rgba(255,255,255,0.72);
+      line-height: 1.7;
+    }
+    .atuacao-card-content .tag {
+      display: inline-block;
+      background: rgba(255,255,255,0.15);
+      color: var(--white);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 100px;
+      margin-top: 12px;
+      letter-spacing: 0.5px;
+    }
+
+    /* =====================
+       DIFERENCIAIS
+    ===================== */
+    #diferenciais {
+      background: var(--white);
+      padding: 100px 0;
+    }
+    .diferenciais-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+    .diferencial-card {
+      background: var(--gray-bg);
+      border-radius: var(--radius);
+      padding: 36px 32px;
+      text-align: center;
+      border-bottom: 4px solid transparent;
+      transition: all 0.25s ease;
+    }
+    .diferencial-card:hover {
+      border-bottom-color: var(--red);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow);
+    }
+    .diferencial-icon {
+      width: 68px;
+      height: 68px;
+      background: rgba(0,74,173,0.08);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--blue);
+      font-size: 28px;
+      margin: 0 auto 20px;
+      transition: background 0.25s;
+    }
+    .diferencial-card:hover .diferencial-icon {
+      background: rgba(209,38,36,0.08);
+      color: var(--red);
+    }
+    .diferencial-title {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 10px;
+    }
+    .diferencial-desc {
+      font-size: 14px;
+      color: var(--text-light);
+      line-height: 1.7;
+    }
+
+    /* =====================
+       AVALIAÇÕES
+    ===================== */
+    #avaliacoes {
+      background: var(--gray-bg);
+      padding: 100px 0;
+    }
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+    .review-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 32px 28px;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .review-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+    .review-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .review-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--white);
+      flex-shrink: 0;
+    }
+    .review-info strong {
+      display: block;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .review-info span {
+      font-size: 12px;
+      color: var(--text-light);
+    }
+    .review-stars {
+      color: #f59e0b;
+      font-size: 14px;
+      letter-spacing: 1px;
+    }
+    .review-text {
+      font-size: 14px;
+      color: var(--text-light);
+      line-height: 1.75;
+      font-style: italic;
+    }
+    .review-google {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: var(--text-light);
+      font-weight: 600;
+    }
+    .review-google i { color: #4285f4; font-size: 14px; }
+    .reviews-notice {
+      text-align: center;
+      margin-top: 32px;
+      font-size: 13px;
+      color: var(--text-light);
+      background: rgba(0,74,173,0.06);
+      border: 1px dashed rgba(0,74,173,0.25);
+      border-radius: 8px;
+      padding: 14px 20px;
+      display: inline-block;
+    }
+    .reviews-notice-wrap { text-align: center; }
+
+    /* =====================
+       CONTATO
+    ===================== */
+    #contato {
+      background: var(--dark-2);
+      padding: 100px 0;
+    }
+    #contato .section-label { color: rgba(255,255,255,0.55); }
+    #contato .section-title { color: var(--white); }
+    #contato .section-title span { color: var(--red); }
+    #contato .section-subtitle { color: rgba(255,255,255,0.60); }
+    #contato .divider { background: var(--red); }
+    .contato-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+    .contato-info { display: flex; flex-direction: column; gap: 28px; }
+    .info-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+    .info-icon {
+      width: 48px;
+      height: 48px;
+      background: rgba(209,38,36,0.15);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--red);
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+    .info-content strong {
+      display: block;
+      font-size: 14px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.50);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
+    .info-content p, .info-content a {
+      font-size: 15px;
+      color: var(--white);
+      line-height: 1.6;
+    }
+    .info-content a:hover { color: var(--red); }
+    .horarios {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-top: 6px;
+    }
+    .horario-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      color: rgba(255,255,255,0.80);
+    }
+    .horario-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--red);
+      flex-shrink: 0;
+    }
+    .horario-dot.green { background: #22c55e; }
+    .contato-form-wrap {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: var(--radius);
+      padding: 40px 36px;
+    }
+    .form-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 24px;
+    }
+    .form-group { margin-bottom: 18px; }
+    .form-group label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.60);
+      margin-bottom: 7px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 8px;
+      padding: 13px 16px;
+      font-family: inherit;
+      font-size: 14px;
+      color: var(--white);
+      transition: border-color 0.2s;
+      outline: none;
+    }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: rgba(255,255,255,0.30); }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: var(--red); }
+    .form-group select option { background: var(--dark-2); color: var(--white); }
+    .form-group textarea { resize: vertical; min-height: 110px; }
+    .form-submit { width: 100%; justify-content: center; font-size: 15px; margin-top: 6px; }
+
+    /* =====================
+       FOOTER
+    ===================== */
+    footer {
+      background: var(--dark);
+      padding: 56px 0 28px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 48px;
+    }
+    .footer-brand .logo-top .rest { color: rgba(255,255,255,0.90); }
+    .footer-brand .logo-bottom { color: rgba(255,255,255,0.55); }
+    .footer-desc {
+      font-size: 14px;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.75;
+      margin: 16px 0 20px;
+    }
+    .footer-social {
+      display: flex;
+      gap: 12px;
+    }
+    .social-link {
+      width: 38px;
+      height: 38px;
+      background: rgba(255,255,255,0.07);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,0.60);
+      font-size: 15px;
+      transition: all 0.2s;
+    }
+    .social-link:hover { background: var(--red); color: var(--white); }
+    .social-link.instagram {
+      background: rgba(225,48,108,0.15);
+      border: 1px solid rgba(225,48,108,0.35);
+      color: #e1306c;
+      font-size: 18px;
+      width: 44px;
+      height: 44px;
+    }
+    .social-link.instagram:hover { background: #e1306c; color: var(--white); border-color: #e1306c; }
+    .footer-col h4 {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--white);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 18px;
+    }
+    .footer-links { display: flex; flex-direction: column; gap: 10px; }
+    .footer-links a {
+      font-size: 14px;
+      color: rgba(255,255,255,0.50);
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--red); }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding-top: 24px;
+      padding-bottom: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .footer-copy {
+      font-size: 13px;
+      color: rgba(255,255,255,0.35);
+    }
+    .footer-copy a { color: var(--red); }
+    .footer-bottom-right {
+      font-size: 13px;
+      color: rgba(255,255,255,0.35);
+    }
+
+    /* =====================
+       WHATSAPP FLOAT
+    ===================== */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      gap: 0;
+      filter: drop-shadow(0 4px 16px rgba(37,211,102,0.40));
+      animation: pulse-wp 3s ease-in-out infinite;
+    }
+    .whatsapp-float a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #25d366;
+      color: var(--white);
+      border-radius: 50px;
+      padding: 14px 20px 14px 16px;
+      font-size: 15px;
+      font-weight: 700;
+      transition: all 0.25s;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.45);
+    }
+    .whatsapp-float a:hover {
+      background: #1ebe5d;
+      transform: scale(1.05);
+    }
+    .whatsapp-float a i { font-size: 24px; }
+    .wp-text { font-size: 13px; font-weight: 600; }
+    @keyframes pulse-wp {
+      0%, 100% { filter: drop-shadow(0 4px 16px rgba(37,211,102,0.40)); }
+      50%       { filter: drop-shadow(0 4px 28px rgba(37,211,102,0.75)); }
+    }
+
+    /* =====================
+       SCROLL TO TOP
+    ===================== */
+    #scrollTop {
+      position: fixed;
+      bottom: 28px;
+      left: 28px;
+      z-index: 9998;
+      width: 44px;
+      height: 44px;
+      background: var(--blue);
+      color: var(--white);
+      border: none;
+      border-radius: 50%;
+      font-size: 16px;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 14px rgba(0,74,173,0.40);
+      transition: all 0.2s;
+    }
+    #scrollTop:hover { background: var(--blue-dark); transform: translateY(-2px); }
+    #scrollTop.visible { display: flex; }
+
+    /* =====================
+       ANIMATIONS
+    ===================== */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .fade-up.delay-1 { transition-delay: 0.1s; }
+    .fade-up.delay-2 { transition-delay: 0.2s; }
+    .fade-up.delay-3 { transition-delay: 0.3s; }
+    .fade-up.delay-4 { transition-delay: 0.4s; }
+    .fade-up.delay-5 { transition-delay: 0.5s; }
+
+    /* =====================
+       RESPONSIVE
+    ===================== */
+    @media (max-width: 1024px) {
+      .sobre-grid { grid-template-columns: 1fr; gap: 48px; }
+      .sobre-card-float { right: -12px; bottom: -16px; }
+      .diferenciais-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      .nav-links, .header-cta { display: none; }
+      .hamburger { display: flex; }
+      .hero-title { font-size: 36px; }
+      .hero-buttons { flex-direction: column; }
+      .hero-stats { gap: 28px; }
+      .stat-number { font-size: 32px; }
+      .hero-decoration { display: none; }
+      .atuacao-cards { grid-template-columns: 1fr; }
+      .reviews-grid { grid-template-columns: 1fr; }
+      .contato-grid { grid-template-columns: 1fr; gap: 40px; }
+      .footer-top { grid-template-columns: 1fr; gap: 32px; }
+      .footer-bottom { flex-direction: column; align-items: center; text-align: center; }
+      .diferenciais-grid { grid-template-columns: 1fr; }
+      .servicos-grid { grid-template-columns: 1fr; }
+      .sobre-card-float { position: static; margin-top: 16px; display: inline-block; }
+      .whatsapp-float a .wp-text { display: none; }
+      .whatsapp-float a { padding: 14px; border-radius: 50%; }
+    }
+    @media (max-width: 480px) {
+      .contato-form-wrap { padding: 28px 20px; }
+      .atuacao-card { padding: 28px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========================
+       HEADER
+  ======================== -->
+  <header id="header">
+    <div class="header-inner">
+      <!-- Logo -->
+      <a href="#hero" aria-label="SM Mudanças e Transportes - Início">
+        <div class="logo">
+          <div class="logo-top">
+            <span class="sm">SM</span><span class="rest"> MUDANÇAS</span>
+          </div>
+          <div class="logo-bottom">E TRANSPORTES</div>
+        </div>
+      </a>
+
+      <!-- Nav Desktop -->
+      <nav class="nav-links" role="navigation">
+        <a href="#sobre">Sobre</a>
+        <a href="#servicos">Serviços</a>
+        <a href="#atuacao">Atuação</a>
+        <a href="#avaliacoes">Avaliações</a>
+        <a href="#contato">Contato</a>
+      </nav>
+
+      <!-- CTA Desktop -->
+      <a href="https://wa.me/5541996755599?text=Olá!%20Gostaria%20de%20solicitar%20um%20orçamento." target="_blank" rel="noopener" class="btn btn-primary header-cta">
+        <i class="fab fa-whatsapp"></i> Orçamento Grátis
+      </a>
+
+      <!-- Hamburger Mobile -->
+      <button class="hamburger" id="hamburger" aria-label="Abrir menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Menu -->
+  <nav class="mobile-nav" id="mobileNav" role="navigation">
+    <a href="#sobre" class="nav-mobile-link">Sobre Nós</a>
+    <a href="#servicos" class="nav-mobile-link">Serviços</a>
+    <a href="#atuacao" class="nav-mobile-link">Área de Atuação</a>
+    <a href="#avaliacoes" class="nav-mobile-link">Avaliações</a>
+    <a href="#contato" class="nav-mobile-link">Contato</a>
+    <a href="https://wa.me/5541996755599?text=Olá!%20Gostaria%20de%20solicitar%20um%20orçamento." target="_blank" rel="noopener" class="btn btn-primary">
+      <i class="fab fa-whatsapp"></i> Falar no WhatsApp
+    </a>
+  </nav>
+
+
+  <!-- ========================
+       HERO
+  ======================== -->
+  <section id="hero">
+    <div class="hero-inner">
+      <div class="hero-badge">
+        <i class="fas fa-award"></i>
+        20 Anos de Experiência no Mercado
+      </div>
+      <h1 class="hero-title">
+        Mudanças que<br />
+        <span class="highlight">chegam em segurança</span><br />
+        em qualquer lugar do Brasil
+      </h1>
+      <p class="hero-slogan">"Movendo histórias, transportando sonhos."</p>
+      <div class="hero-buttons">
+        <a href="https://wa.me/5541996755599?text=Olá!%20Gostaria%20de%20solicitar%20um%20orçamento." target="_blank" rel="noopener" class="btn btn-primary">
+          <i class="fab fa-whatsapp"></i> Solicitar Orçamento Grátis
+        </a>
+        <a href="#servicos" class="btn btn-secondary">
+          <i class="fas fa-arrow-down"></i> Conhecer Serviços
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <div class="stat-number">20<span>+</span></div>
+          <div class="stat-label">Anos de Experiência</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">100<span>%</span></div>
+          <div class="stat-label">Comprometimento</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">BR<span>.</span></div>
+          <div class="stat-label">Atendimento Nacional</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-decoration" aria-hidden="true">
+      <i class="fas fa-truck-moving"></i>
+    </div>
+  </section>
+
+
+  <!-- ========================
+       SOBRE
+  ======================== -->
+  <section id="sobre">
+    <div class="container">
+      <div class="sobre-grid">
+        <!-- Visual -->
+        <div class="sobre-visual fade-up">
+          <div class="sobre-img-main">
+            <img src="img/sobre-principal.jpg" alt="SM Mudanças e Transportes - Equipe em ação" loading="lazy" />
+          </div>
+          <div class="sobre-card-float">
+            <div class="num">20<span>+</span></div>
+            <div class="txt">Anos no mercado</div>
+          </div>
+        </div>
+
+        <!-- Content -->
+        <div class="sobre-content">
+          <div class="section-label fade-up">Quem Somos</div>
+          <div class="divider fade-up delay-1"></div>
+          <h2 class="section-title fade-up delay-1">
+            Tradição e confiança em <span>cada mudança</span>
+          </h2>
+          <p class="sobre-text fade-up delay-2">
+            A SM Mudanças e Transportes é uma empresa curitibana com mais de 20 anos de atuação no mercado de mudanças residenciais, comerciais e transporte de cargas. Com sede em Curitiba, no bairro Cidade Industrial, atendemos toda a região metropolitana e realizamos mudanças para qualquer estado do Brasil.
+          </p>
+          <p class="sobre-text fade-up delay-2">
+            Nossa equipe é treinada, dedicada e equipada com os recursos certos para garantir que cada pertence chegue ao destino com segurança, cuidado e no prazo combinado.
+          </p>
+          <div class="sobre-features fade-up delay-3">
+            <div class="feature-item">
+              <div class="feature-icon"><i class="fas fa-check-circle"></i></div>
+              <div class="feature-text">
+                <strong>Orçamento Personalizado</strong>
+                <p>Análise detalhada das suas necessidades para oferecer a solução ideal.</p>
+              </div>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon"><i class="fas fa-users"></i></div>
+              <div class="feature-text">
+                <strong>Equipe e Estrutura Completas</strong>
+                <p>Profissionais especializados e equipamentos adequados para cada tipo de serviço.</p>
+              </div>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
+              <div class="feature-text">
+                <strong>Segurança e Responsabilidade</strong>
+                <p>Comprometidos com a integridade de cada item transportado.</p>
+              </div>
+            </div>
+          </div>
+          <a href="https://wa.me/5541996755599?text=Olá!%20Quero%20saber%20mais%20sobre%20os%20serviços%20da%20SM%20Mudanças." target="_blank" rel="noopener" class="btn btn-blue fade-up delay-4">
+            <i class="fab fa-whatsapp"></i> Fale Conosco
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ========================
+       SERVIÇOS
+  ======================== -->
+  <section id="servicos">
+    <div class="container">
+      <div class="section-header center">
+        <div class="section-label fade-up">O Que Fazemos</div>
+        <div class="divider fade-up delay-1"></div>
+        <h2 class="section-title fade-up delay-1">Nossos <span>Serviços</span></h2>
+        <p class="section-subtitle fade-up delay-2">
+          Soluções completas em mudanças e transporte, do planejamento à entrega final.
+        </p>
+      </div>
+      <div class="servicos-grid">
+
+        <div class="servico-card fade-up">
+          <div class="servico-img">
+            <img src="img/mudanca-residencial.jpg" alt="Mudanças Residenciais e Comerciais - SM Mudanças" loading="lazy" />
+          </div>
+          <div class="servico-body">
+            <div class="servico-icon"><i class="fas fa-home"></i></div>
+            <h3 class="servico-title">Mudanças Residenciais e Comerciais</h3>
+            <p class="servico-desc">Realizamos mudanças completas para residências e empresas com toda a estrutura necessária para uma transição tranquila e segura.</p>
+          </div>
+        </div>
+
+        <div class="servico-card fade-up delay-1">
+          <div class="servico-img">
+            <img src="img/logistica-remocoes.jpg" alt="Logística e Remoções - SM Mudanças" loading="lazy" />
+          </div>
+          <div class="servico-body">
+            <div class="servico-icon"><i class="fas fa-route"></i></div>
+            <h3 class="servico-title">Logística e Remoções</h3>
+            <p class="servico-desc">Planejamento logístico eficiente para remoções de qualquer porte, garantindo organização em todas as etapas do processo.</p>
+          </div>
+        </div>
+
+        <div class="servico-card fade-up delay-2">
+          <div class="servico-img">
+            <img src="img/icamento.jpg" alt="Içamento - SM Mudanças" loading="lazy" />
+          </div>
+          <div class="servico-body">
+            <div class="servico-icon"><i class="fas fa-arrow-up"></i></div>
+            <h3 class="servico-title">Içamento</h3>
+            <p class="servico-desc">Içamento especializado de móveis e equipamentos para acessos difíceis, como janelas e sacadas, com total segurança.</p>
+          </div>
+        </div>
+
+        <div class="servico-card fade-up delay-3">
+          <div class="servico-img">
+            <img src="img/embalagem.jpg" alt="Embalagem Completa - SM Mudanças" loading="lazy" />
+          </div>
+          <div class="servico-body">
+            <div class="servico-icon"><i class="fas fa-box-open"></i></div>
+            <h3 class="servico-title">Embalagem Completa</h3>
+            <p class="servico-desc">Embalagem profissional de todos os seus pertences utilizando materiais de qualidade para garantir máxima proteção durante o transporte.</p>
+          </div>
+        </div>
+
+        <div class="servico-card fade-up delay-1">
+          <div class="servico-img">
+            <img src="img/guarda-moveis.jpg" alt="Guarda-Móveis - SM Mudanças" loading="lazy" />
+          </div>
+          <div class="servico-body">
+            <div class="servico-icon"><i class="fas fa-warehouse"></i></div>
+            <h3 class="servico-title">Guarda-Móveis</h3>
+            <p class="servico-desc">Armazenamento seguro dos seus móveis e pertences em nosso depósito, pelo tempo que você precisar.</p>
+          </div>
+        </div>
+
+        <div class="servico-card fade-up delay-2">
+          <div class="servico-img">
+            <img src="img/montagem-moveis.jpg" alt="Desmontagem e Remontagem de Móveis - SM Mudanças" loading="lazy" style="object-position: center;" />
+          </div>
+          <div class="servico-body">
+            <div class="servico-icon"><i class="fas fa-tools"></i></div>
+            <h3 class="servico-title">Desmontagem e Remontagem de Móveis</h3>
+            <p class="servico-desc">Desmontamos e remontamos seus móveis com cuidado e precisão, deixando tudo pronto no novo endereço.</p>
+          </div>
+        </div>
+
+        <div class="servico-card fade-up delay-3">
+          <div class="servico-img">
+            <img src="img/carga-dedicada.jpg" alt="Carga Dedicada e Fracionada - SM Mudanças" loading="lazy" />
+          </div>
+          <div class="servico-body">
+            <div class="servico-icon"><i class="fas fa-truck"></i></div>
+            <h3 class="servico-title">Carga Dedicada e Fracionada</h3>
+            <p class="servico-desc">Transporte de cargas com veículo exclusivo ou compartilhamento de espaço para otimizar custos sem abrir mão da segurança.</p>
+          </div>
+        </div>
+
+        <div class="servico-card fade-up delay-4">
+          <div class="servico-img">
+            <img src="img/transporte-maquinas.jpg" alt="Transporte de Máquinas - SM Mudanças" loading="lazy" />
+          </div>
+          <div class="servico-body">
+            <div class="servico-icon"><i class="fas fa-cog"></i></div>
+            <h3 class="servico-title">Transporte de Máquinas</h3>
+            <p class="servico-desc">Transporte especializado de máquinas de médio e pequeno porte com equipamentos e equipe preparados para este tipo de carga.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ========================
+       ÁREA DE ATUAÇÃO
+  ======================== -->
+  <section id="atuacao">
+    <div class="container atuacao-inner">
+      <div class="section-header center">
+        <div class="section-label fade-up">Onde Atuamos</div>
+        <div class="divider fade-up delay-1"></div>
+        <h2 class="section-title fade-up delay-1">Área de <span>Atuação</span></h2>
+        <p class="section-subtitle fade-up delay-2">
+          De Curitiba para o Brasil inteiro — estamos prontos para atender onde você precisar.
+        </p>
+      </div>
+      <div class="atuacao-cards">
+        <div class="atuacao-card fade-up">
+          <div class="atuacao-card-icon"><i class="fas fa-map-marker-alt"></i></div>
+          <div class="atuacao-card-content">
+            <h3>Curitiba e Região</h3>
+            <p>Atendemos Curitiba e toda a Região Metropolitana com agilidade, pontualidade e a estrutura completa para mudanças locais de qualquer tamanho.</p>
+            <span class="tag"><i class="fas fa-check" style="margin-right:5px"></i>Atendimento Local</span>
+          </div>
+        </div>
+        <div class="atuacao-card fade-up delay-2">
+          <div class="atuacao-card-icon"><i class="fas fa-globe-americas"></i></div>
+          <div class="atuacao-card-content">
+            <h3>Interestadual Nacional</h3>
+            <p>Realizamos mudanças e transportes para qualquer estado do Brasil. Nossa logística nacional garante segurança e eficiência no trajeto longo.</p>
+            <span class="tag"><i class="fas fa-check" style="margin-right:5px"></i>Todo o Brasil</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ========================
+       DIFERENCIAIS
+  ======================== -->
+  <section id="diferenciais">
+    <div class="container">
+      <div class="section-header center">
+        <div class="section-label fade-up">Por Que Nos Escolher</div>
+        <div class="divider fade-up delay-1"></div>
+        <h2 class="section-title fade-up delay-1">Nossos <span>Diferenciais</span></h2>
+        <p class="section-subtitle fade-up delay-2">
+          Comprometidos com a excelência em cada detalhe da sua mudança.
+        </p>
+      </div>
+      <div class="diferenciais-grid">
+        <div class="diferencial-card fade-up">
+          <div class="diferencial-icon"><i class="fas fa-file-alt"></i></div>
+          <h3 class="diferencial-title">Orçamento Personalizado</h3>
+          <p class="diferencial-desc">Analisamos cada caso individualmente para oferecer a proposta mais adequada ao seu perfil e necessidade.</p>
+        </div>
+        <div class="diferencial-card fade-up delay-1">
+          <div class="diferencial-icon"><i class="fas fa-users-cog"></i></div>
+          <h3 class="diferencial-title">Equipe Especializada</h3>
+          <p class="diferencial-desc">Profissionais treinados e experientes para garantir o manuseio correto de todos os seus bens durante a mudança.</p>
+        </div>
+        <div class="diferencial-card fade-up delay-2">
+          <div class="diferencial-icon"><i class="fas fa-truck-loading"></i></div>
+          <h3 class="diferencial-title">Estrutura Completa</h3>
+          <p class="diferencial-desc">Frota própria e equipamentos adequados para cada tipo de mudança, sem terceirizações que comprometam a qualidade.</p>
+        </div>
+        <div class="diferencial-card fade-up delay-3">
+          <div class="diferencial-icon"><i class="fas fa-shield-alt"></i></div>
+          <h3 class="diferencial-title">Segurança Total</h3>
+          <p class="diferencial-desc">Cuidado redobrado no embalamento, transporte e entrega de cada item, dos menores detalhes aos mais pesados.</p>
+        </div>
+        <div class="diferencial-card fade-up delay-4">
+          <div class="diferencial-icon"><i class="fas fa-medal"></i></div>
+          <h3 class="diferencial-title">20 Anos de Experiência</h3>
+          <p class="diferencial-desc">Duas décadas atendendo famílias e empresas de Curitiba e do Brasil inteiro com excelência e confiança.</p>
+        </div>
+        <div class="diferencial-card fade-up delay-5">
+          <div class="diferencial-icon"><i class="fas fa-headset"></i></div>
+          <h3 class="diferencial-title">Atendimento Dedicado</h3>
+          <p class="diferencial-desc">Suporte próximo em todas as etapas: do orçamento até a conclusão da mudança, sempre disponível para você.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ========================
+       AVALIAÇÕES
+  ======================== -->
+  <section id="avaliacoes">
+    <div class="container">
+      <div class="section-header center">
+        <div class="section-label fade-up">Clientes Satisfeitos</div>
+        <div class="divider fade-up delay-1"></div>
+        <h2 class="section-title fade-up delay-1">O que dizem sobre <span>a SM</span></h2>
+        <p class="section-subtitle fade-up delay-2">
+          Avaliações reais de clientes que confiaram na nossa equipe.
+        </p>
+      </div>
+      <div class="reviews-grid">
+
+        <!-- Review 1 — Maria rosilene Mariano costa -->
+        <div class="review-card fade-up">
+          <div class="review-header">
+            <div class="review-avatar" style="background: var(--blue);">MR</div>
+            <div class="review-info">
+              <strong>Maria Rosilene Mariano Costa</strong>
+              <span>7 meses atrás</span>
+            </div>
+          </div>
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">
+            "Contratei recentemente a empresa para uma mudança de Salvador para Curitiba, chegou tudo em perfeita ordem e no prazo combinado. A equipe está de parabéns e o sr. Marcos muito atencioso! 👏👏"
+          </p>
+          <div class="review-google">
+            <i class="fab fa-google"></i> Avaliação no Google
+          </div>
+        </div>
+
+        <!-- Review 2 — Julio Diniz -->
+        <div class="review-card fade-up delay-2">
+          <div class="review-header">
+            <div class="review-avatar" style="background: var(--red);">JD</div>
+            <div class="review-info">
+              <strong>Julio Diniz</strong>
+              <span>Local Guide · 6 meses atrás</span>
+            </div>
+          </div>
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">
+            "Mudança perfeita! Pontual na desmontagem e na entrega! Muito cuidado com tudo. Funcionários com o uniforme da empresa, cordiais e muito prestativos. Recomendo sem medo!"
+          </p>
+          <div class="review-google">
+            <i class="fab fa-google"></i> Avaliação no Google
+          </div>
+        </div>
+
+        <!-- Review 3 — Maria Helena Nardes -->
+        <div class="review-card fade-up delay-4">
+          <div class="review-header">
+            <div class="review-avatar" style="background: #16a34a;">MH</div>
+            <div class="review-info">
+              <strong>Maria Helena Nardes</strong>
+              <span>3 anos atrás</span>
+            </div>
+          </div>
+          <div class="review-stars">★★★★★</div>
+          <p class="review-text">
+            "Sr. Marcos desde o início tentou esclarecer com muita simpatia e clareza todas as dúvidas. Tudo transcorreu muito bem, com muito profissionalismo, tanto na saída quanto na entrega da mudança. Recomendo!!! Sou muito agradecida!"
+          </p>
+          <div class="review-google">
+            <i class="fab fa-google"></i> Avaliação no Google
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ========================
+       CONTATO
+  ======================== -->
+  <section id="contato">
+    <div class="container">
+      <div class="section-header center">
+        <div class="section-label fade-up">Entre em Contato</div>
+        <div class="divider fade-up delay-1"></div>
+        <h2 class="section-title fade-up delay-1">Fale com a <span>SM Mudanças</span></h2>
+        <p class="section-subtitle fade-up delay-2">
+          Solicite seu orçamento ou tire suas dúvidas. Estamos prontos para atender você.
+        </p>
+      </div>
+      <div class="contato-grid">
+        <!-- Info -->
+        <div class="contato-info fade-up">
+          <div class="info-item">
+            <div class="info-icon"><i class="fab fa-whatsapp"></i></div>
+            <div class="info-content">
+              <strong>WhatsApp</strong>
+              <a href="https://wa.me/5541996755599?text=Olá!%20Gostaria%20de%20solicitar%20um%20orçamento." target="_blank" rel="noopener">(41) 99675-5599</a>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon"><i class="fas fa-envelope"></i></div>
+            <div class="info-content">
+              <strong>E-mail</strong>
+              <a href="mailto:sm_mudancas@hotmail.com">sm_mudancas@hotmail.com</a>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
+            <div class="info-content">
+              <strong>Endereço</strong>
+              <p>Rua Getúlio Silveira, 181<br />Cidade Industrial de Curitiba<br />Curitiba – PR, 81230-037<br /><span style="font-size:12px;color:rgba(255,255,255,0.45);margin-top:2px;display:block;">Galpão / Depósito</span></p>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon"><i class="fas fa-clock"></i></div>
+            <div class="info-content">
+              <strong>Horário de Atendimento</strong>
+              <div class="horarios">
+                <div class="horario-row"><span class="horario-dot green"></span>Segunda a Sexta: 09:00 – 17:30</div>
+                <div class="horario-row"><span class="horario-dot green"></span>Sábado: 08:00 – 12:00</div>
+                <div class="horario-row"><span class="horario-dot" style="background:#ef4444;"></span>Domingo: Fechado</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Form -->
+        <div class="contato-form-wrap fade-up delay-2">
+          <h3 class="form-title">Solicite seu Orçamento</h3>
+          <form id="contatoForm" onsubmit="handleFormSubmit(event)">
+            <div class="form-group">
+              <label for="nome">Nome Completo</label>
+              <input type="text" id="nome" name="nome" placeholder="Seu nome" required />
+            </div>
+            <div class="form-group">
+              <label for="telefone">Telefone / WhatsApp</label>
+              <input type="tel" id="telefone" name="telefone" placeholder="(41) 9 0000-0000" required />
+            </div>
+            <div class="form-group">
+              <label for="servico">Serviço de Interesse</label>
+              <select id="servico" name="servico">
+                <option value="">Selecione um serviço...</option>
+                <option>Mudança Residencial</option>
+                <option>Mudança Comercial</option>
+                <option>Logística e Remoções</option>
+                <option>Içamento</option>
+                <option>Embalagem Completa</option>
+                <option>Guarda-Móveis</option>
+                <option>Desmontagem e Remontagem</option>
+                <option>Carga Dedicada / Fracionada</option>
+                <option>Transporte de Máquinas</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="mensagem">Mensagem</label>
+              <textarea id="mensagem" name="mensagem" placeholder="Descreva brevemente sua necessidade..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary form-submit">
+              <i class="fab fa-whatsapp"></i> Enviar via WhatsApp
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ========================
+       FOOTER
+  ======================== -->
+  <footer>
+    <div class="container">
+      <div class="footer-top">
+        <!-- Brand -->
+        <div class="footer-brand">
+          <div class="logo">
+            <div class="logo-top">
+              <span class="sm">SM</span><span class="rest"> MUDANÇAS</span>
+            </div>
+            <div class="logo-bottom">E TRANSPORTES</div>
+          </div>
+          <p class="footer-desc">
+            20 anos levando segurança, cuidado e profissionalismo nas mudanças residenciais, comerciais e no transporte de cargas em Curitiba e em todo o Brasil.
+          </p>
+          <div class="footer-social">
+            <a href="https://www.instagram.com/sm_mudancas/" target="_blank" rel="noopener" class="social-link instagram" title="Instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://wa.me/5541996755599" target="_blank" rel="noopener" class="social-link" title="WhatsApp" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+          </div>
+        </div>
+
+        <!-- Links -->
+        <div class="footer-col">
+          <h4>Navegação</h4>
+          <div class="footer-links">
+            <a href="#sobre">Sobre Nós</a>
+            <a href="#servicos">Serviços</a>
+            <a href="#atuacao">Área de Atuação</a>
+            <a href="#diferenciais">Diferenciais</a>
+            <a href="#avaliacoes">Avaliações</a>
+            <a href="#contato">Contato</a>
+          </div>
+        </div>
+
+        <!-- Contato -->
+        <div class="footer-col">
+          <h4>Contato</h4>
+          <div class="footer-links">
+            <a href="https://wa.me/5541996755599" target="_blank" rel="noopener"><i class="fab fa-whatsapp" style="margin-right:6px;color:var(--red)"></i>(41) 99675-5599</a>
+            <a href="mailto:sm_mudancas@hotmail.com"><i class="fas fa-envelope" style="margin-right:6px;color:var(--red)"></i>sm_mudancas@hotmail.com</a>
+            <a href="#" style="pointer-events:none;"><i class="fas fa-map-marker-alt" style="margin-right:6px;color:var(--red)"></i>Rua Getúlio Silveira, 181<br />&nbsp;&nbsp;&nbsp;&nbsp;CIC – Curitiba/PR</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="footer-copy" style="text-align:center;width:100%;">
+          &copy; 2025 SM Mudanças e Transportes. Todos os direitos reservados.
+          &nbsp;&nbsp;|&nbsp;&nbsp;
+          Curitiba – PR
+          &nbsp;&nbsp;|&nbsp;&nbsp;
+          CNPJ: <span style="color:rgba(255,255,255,0.55);">26.569.703/0001-29</span>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- ========================
+       WHATSAPP FLOATING BTN
+  ======================== -->
+  <div class="whatsapp-float" aria-label="Fale pelo WhatsApp">
+    <a href="https://wa.me/5541996755599?text=Olá!%20Gostaria%20de%20solicitar%20um%20orçamento." target="_blank" rel="noopener">
+      <i class="fab fa-whatsapp"></i>
+      <span class="wp-text">Falar no WhatsApp</span>
+    </a>
+  </div>
+
+  <!-- Scroll to top -->
+  <button id="scrollTop" aria-label="Voltar ao topo"><i class="fas fa-arrow-up"></i></button>
+
+
+  <!-- ========================
+       JAVASCRIPT
+  ======================== -->
+  <script>
+    /* --- Header scroll effect --- */
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    /* --- Hamburger menu --- */
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobileNav');
+    hamburger.addEventListener('click', () => {
+      const isOpen = mobileNav.classList.toggle('open');
+      hamburger.setAttribute('aria-expanded', isOpen);
+      hamburger.querySelectorAll('span').forEach((s, i) => {
+        if (isOpen) {
+          if (i === 0) s.style.transform = 'rotate(45deg) translate(5px, 5px)';
+          if (i === 1) s.style.opacity = '0';
+          if (i === 2) s.style.transform = 'rotate(-45deg) translate(5px, -5px)';
+        } else {
+          s.style.transform = ''; s.style.opacity = '';
+        }
+      });
+    });
+
+    /* Close mobile nav on link click */
+    document.querySelectorAll('.nav-mobile-link').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileNav.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', false);
+        hamburger.querySelectorAll('span').forEach(s => { s.style.transform = ''; s.style.opacity = ''; });
+      });
+    });
+
+    /* --- Scroll to top button --- */
+    const scrollTopBtn = document.getElementById('scrollTop');
+    window.addEventListener('scroll', () => {
+      scrollTopBtn.classList.toggle('visible', window.scrollY > 500);
+    });
+    scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    /* --- Fade-up animations on scroll --- */
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    /* --- Form submit → WhatsApp --- */
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      const nome     = document.getElementById('nome').value.trim();
+      const telefone = document.getElementById('telefone').value.trim();
+      const servico  = document.getElementById('servico').value;
+      const mensagem = document.getElementById('mensagem').value.trim();
+      let msg = `Olá, SM Mudanças! Meu nome é *${nome}*.\n`;
+      if (servico) msg += `Tenho interesse em: *${servico}*.\n`;
+      if (mensagem) msg += `\n${mensagem}`;
+      msg += `\n\nMeu contato: ${telefone}`;
+      window.open(`https://wa.me/5541996755599?text=${encodeURIComponent(msg)}`, '_blank');
+    }
+
+    /* --- Phone mask --- */
+    document.getElementById('telefone').addEventListener('input', function () {
+      let v = this.value.replace(/\D/g, '').substring(0, 11);
+      if (v.length > 6) v = `(${v.slice(0,2)}) ${v.slice(2,7)}-${v.slice(7)}`;
+      else if (v.length > 2) v = `(${v.slice(0,2)}) ${v.slice(2)}`;
+      else if (v.length > 0) v = `(${v}`;
+      this.value = v;
+    });
+  </script>
+</body>
+</html>
